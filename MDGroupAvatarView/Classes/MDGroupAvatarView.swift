@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 /// view contains avatars of group.
-class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+public class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     fileprivate var avatarUrls = Array<URL>()
     fileprivate var avatarImages = Array<UIImage>()
     fileprivate var avatarCollectionView : UICollectionView?
@@ -19,7 +19,7 @@ class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDel
 /** 
      Initialize with decoder
  */
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         avatarUrls = Array<URL>()
         
@@ -61,7 +61,7 @@ class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDel
         + images: List of avatars (4 item at most)
         + realTotal: total of group, if number is greater than 4, the count is displayed on the last item.
      */
-    func setAvatarImages(_ images: Array<UIImage>?, realTotal : Int) {
+    public func setAvatarImages(_ images: Array<UIImage>?, realTotal : Int) {
         avatarUrls.removeAll()
         avatarImages = images == nil ? Array<UIImage>() : Array<UIImage>(images!)
         self.realTotal = realTotal
@@ -69,7 +69,7 @@ class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     //MARK: UICollectionViewDataSource
-    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AvatarCell", for: indexPath)
         for subview in cell.subviews {
             subview.removeFromSuperview()
@@ -113,7 +113,7 @@ class MDGroupAvatarView: UIView, UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     
-    internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return min(4, realTotal)
     }
     
